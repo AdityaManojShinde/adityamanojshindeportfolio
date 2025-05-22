@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/animations/fade-in";
+import Typewriter from "typewriter-effect";
 
 export default function Hero() {
   return (
@@ -46,7 +47,21 @@ export default function Hero() {
 
           <FadeIn direction="up" delay={0.2}>
             <h2 className="text-xl font-medium text-muted-foreground sm:text-2xl md:text-3xl">
-              Full Stack Developer & UI/UX Designer
+              <Typewriter
+                options={{
+                  strings: [
+                    "Open Source Contributor.",
+                    "AI/ML Enthusiast.",
+                    "Researching Quantum Computing.",
+                    "Persuing Entrepreneurship.",
+                    "Web Developer.",
+                    "Flutter Developer.",
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  delay: 80,
+                }}
+              />
             </h2>
           </FadeIn>
 
