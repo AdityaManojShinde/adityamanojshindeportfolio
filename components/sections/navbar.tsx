@@ -25,22 +25,35 @@ const navItems: NavItem[] = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    setMounted(true);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   const handleNavClick = () => {
-    if (isOpen) setIsOpen(false);
+    setIsOpen(false);
   };
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <header
@@ -114,7 +127,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Navigation Overlay */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}

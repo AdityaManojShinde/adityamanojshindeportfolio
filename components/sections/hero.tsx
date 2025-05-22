@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <FadeIn direction="up">
             <h1 className="text-3xl font-bold tracking-tighter text-primary sm:text-4xl md:text-5xl lg:text-6xl">
-              Hi, I'm Aditya Shinde
+              Hi, I&apos;m Aditya Shinde
             </h1>
           </FadeIn>
 

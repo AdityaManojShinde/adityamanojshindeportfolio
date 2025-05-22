@@ -1,24 +1,21 @@
 "use client";
 
-import { 
-  Code2, 
-  PenTool, 
-  Database, 
-  LineChart, 
-  MoveRight 
-} from "lucide-react";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
+import { Code2, PenTool, Database, LineChart, MoveRight } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/animations/fade-in";
-import { StaggerChildren, StaggerItem } from "@/components/animations/stagger-children";
+import {
+  StaggerChildren,
+  StaggerItem,
+} from "@/components/animations/stagger-children";
 
 interface Skill {
   name: string;
@@ -97,24 +94,30 @@ export default function About() {
           <FadeIn direction="right" delay={0.2}>
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground">
-                I'm a passionate full-stack developer and UI/UX designer with over 5 years of experience creating 
-                elegant digital solutions. My journey began with a curiosity about how things work, which evolved 
-                into a deep understanding of both the technical and human aspects of software development.
+                I&apos;m a passionate full-stack developer and UI/UX designer
+                with over 5 years of experience creating elegant digital
+                solutions. My journey began with a curiosity about how things
+                work, which evolved into a deep understanding of both the
+                technical and human aspects of software development.
               </p>
               <p className="text-lg text-muted-foreground">
-                I believe in writing clean, maintainable code and designing intuitive interfaces that 
-                prioritize the user's needs. My approach combines technical excellence with aesthetic sensibility 
-                to create products that are both functional and beautiful.
+                I believe in writing clean, maintainable code and designing
+                intuitive interfaces that prioritize the user&apos;s needs. My
+                approach combines technical excellence with aesthetic
+                sensibility to create products that are both functional and
+                beautiful.
               </p>
               <p className="text-lg text-muted-foreground">
-                When I'm not coding, you'll find me exploring new design trends, contributing to open-source projects, 
-                or experimenting with new technologies to stay at the cutting edge of web development.
+                When I&apos;m not coding, you&apos;ll find me exploring new
+                design trends, contributing to open-source projects, or
+                experimenting with new technologies to stay at the cutting edge
+                of web development.
               </p>
               <div>
                 <Button variant="outline" asChild>
-                  <a 
-                    href="/resume.pdf" 
-                    target="_blank" 
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center"
                   >
@@ -128,20 +131,31 @@ export default function About() {
 
           <FadeIn direction="left" delay={0.4}>
             <Tabs defaultValue="Frontend" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1">
                 {skillCategories.map((category) => (
-                  <TabsTrigger key={category.title} value={category.title}>
+                  <TabsTrigger
+                    key={category.title}
+                    value={category.title}
+                    className="text-xs sm:text-sm"
+                  >
                     <span className="hidden sm:inline-flex sm:items-center sm:gap-2">
                       {category.icon}
-                      {category.title}
+                      <span className="hidden md:inline">{category.title}</span>
                     </span>
-                    <span className="sm:hidden">{category.icon}</span>
+                    <span className="sm:hidden flex items-center gap-1">
+                      {category.icon}
+                      <span className="text-xs">{category.title}</span>
+                    </span>
                   </TabsTrigger>
                 ))}
               </TabsList>
 
               {skillCategories.map((category) => (
-                <TabsContent key={category.title} value={category.title}>
+                <TabsContent
+                  key={category.title}
+                  value={category.title}
+                  className="mt-6"
+                >
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
@@ -152,17 +166,34 @@ export default function About() {
                     </CardHeader>
                     <CardContent>
                       <StaggerChildren className="space-y-4">
-                        {category.skills.map((skill) => (
-                          <StaggerItem key={skill.name}>
-                            <div className="space-y-2">
-                              <div className="flex justify-between">
-                                <span>{skill.name}</span>
-                                <span className="text-muted-foreground">{skill.level}%</span>
+                        {category.skills.map((skill, index) => {
+                          // Ensure skill level is valid
+                          const validLevel = Math.min(
+                            Math.max(skill.level || 0, 0),
+                            100
+                          );
+
+                          return (
+                            <StaggerItem key={`${skill.name}-${index}`}>
+                              <div className="space-y-2">
+                                <div className="flex justify-between items-center">
+                                  <span className="text-sm font-medium">
+                                    {skill.name}
+                                  </span>
+                                  <span className="text-xs text-muted-foreground">
+                                    {validLevel}%
+                                  </span>
+                                </div>
+                                <div className="w-full bg-secondary rounded-full h-2">
+                                  <div
+                                    className="bg-primary h-2 rounded-full transition-all duration-300 ease-out"
+                                    style={{ width: `${validLevel}%` }}
+                                  />
+                                </div>
                               </div>
-                              <Progress value={skill.level} className="h-2" />
-                            </div>
-                          </StaggerItem>
-                        ))}
+                            </StaggerItem>
+                          );
+                        })}
                       </StaggerChildren>
                     </CardContent>
                   </Card>

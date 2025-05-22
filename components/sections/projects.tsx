@@ -22,18 +22,23 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FadeIn } from "@/components/animations/fade-in";
-import { StaggerChildren, StaggerItem } from "@/components/animations/stagger-children";
+import {
+  StaggerChildren,
+  StaggerItem,
+} from "@/components/animations/stagger-children";
 import { ProjectCategory, Project } from "@/types";
 import { projects } from "@/lib/data";
+import Image from "next/image";
 
 export default function Projects() {
   const [filter, setFilter] = useState<ProjectCategory | "All">("All");
   const [openProject, setOpenProject] = useState<Project | null>(null);
-  
-  const filteredProjects = filter === "All" 
-    ? projects 
-    : projects.filter(project => project.category === filter);
-  
+
+  const filteredProjects =
+    filter === "All"
+      ? projects
+      : projects.filter((project) => project.category === filter);
+
   const handleOpenProject = (project: Project) => {
     setOpenProject(project);
   };
@@ -43,11 +48,11 @@ export default function Projects() {
   };
 
   const categories: Array<ProjectCategory | "All"> = [
-    "All", 
-    "Web Development", 
-    "Mobile App", 
-    "UI/UX Design", 
-    "Data Visualization"
+    "All",
+    "Web Development",
+    "Mobile App",
+    "UI/UX Design",
+    "Data Visualization",
   ];
 
   return (
@@ -58,11 +63,11 @@ export default function Projects() {
             My Projects
           </h2>
         </FadeIn>
-        
+
         <FadeIn delay={0.2}>
           <p className="text-lg text-muted-foreground mb-10 max-w-3xl">
-            Explore a selection of my recent work across different domains. Each project represents 
-            unique challenges and creative solutions.
+            Explore a selection of my recent work across different domains. Each
+            project represents unique challenges and creative solutions.
           </p>
         </FadeIn>
 
@@ -70,7 +75,7 @@ export default function Projects() {
           <Tabs defaultValue="All" className="mb-12">
             <TabsList className="w-full flex-wrap justify-start mb-6">
               {categories.map((category) => (
-                <TabsTrigger 
+                <TabsTrigger
                   key={category}
                   value={category}
                   onClick={() => setFilter(category)}
@@ -82,7 +87,10 @@ export default function Projects() {
           </Tabs>
         </FadeIn>
 
-        <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" delay={0.3}>
+        <StaggerChildren
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          delay={0.3}
+        >
           <AnimatePresence mode="wait">
             {filteredProjects.map((project) => (
               <StaggerItem key={project.id}>
@@ -95,16 +103,19 @@ export default function Projects() {
                 >
                   <Card className="group overflow-hidden h-full flex flex-col">
                     <div className="relative overflow-hidden">
-                      <div className="aspect-video overflow-hidden">
-                        <img
+                      <div className="aspect-video overflow-hidden relative">
+                        <Image
                           src={project.image}
                           alt={project.title}
+                          fill
                           className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          priority={project.featured}
                         />
                       </div>
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <Button 
-                          variant="secondary" 
+                        <Button
+                          variant="secondary"
                           size="sm"
                           onClick={() => handleOpenProject(project)}
                         >
@@ -127,7 +138,10 @@ export default function Projects() {
                     <CardContent className="pt-0 pb-2">
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech) => (
-                          <Badge key={tech.name} className={`${tech.color} text-white`}>
+                          <Badge
+                            key={tech.name}
+                            className={`${tech.color} text-white`}
+                          >
                             {tech.name}
                           </Badge>
                         ))}
@@ -136,9 +150,9 @@ export default function Projects() {
                     <CardFooter className="flex justify-between pt-2">
                       {project.demoUrl && (
                         <Button variant="ghost" size="sm" asChild>
-                          <a 
-                            href={project.demoUrl} 
-                            target="_blank" 
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
                           >
                             <ExternalLink className="mr-2 h-4 w-4" /> Demo
@@ -147,9 +161,9 @@ export default function Projects() {
                       )}
                       {project.codeUrl && (
                         <Button variant="ghost" size="sm" asChild>
-                          <a 
-                            href={project.codeUrl} 
-                            target="_blank" 
+                          <a
+                            href={project.codeUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
                           >
                             <Code className="mr-2 h-4 w-4" /> Code
@@ -164,68 +178,80 @@ export default function Projects() {
           </AnimatePresence>
         </StaggerChildren>
 
-        <Dialog open={openProject !== null} onOpenChange={handleCloseProject}>
-          {openProject && (
-            <DialogContent className="max-w-3xl">
-              <DialogHeader>
-                <DialogTitle className="text-2xl">{openProject.title}</DialogTitle>
-                <DialogDescription>
-                  <Badge className="mt-2">{openProject.category}</Badge>
-                </DialogDescription>
-              </DialogHeader>
-              
-              <div className="aspect-video w-full overflow-hidden rounded-md">
-                <img
-                  src={openProject.image}
-                  alt={openProject.title}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-medium mb-2">Description</h4>
-                  <p className="text-muted-foreground">{openProject.description}</p>
+        <Dialog open={!!openProject} onOpenChange={handleCloseProject}>
+          <DialogContent className="max-w-3xl bg-white dark:bg-slate-900">
+            {openProject && (
+              <>
+                <DialogHeader>
+                  <DialogTitle className="text-2xl">
+                    {openProject.title}
+                  </DialogTitle>
+                  <DialogDescription>
+                    <Badge className="mt-2">{openProject.category}</Badge>
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="aspect-video w-full overflow-hidden rounded-md relative">
+                  <Image
+                    src={openProject.image}
+                    alt={openProject.title}
+                    fill
+                    className="object-cover w-full h-full"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={openProject.featured}
+                  />
                 </div>
-                
-                <div>
-                  <h4 className="font-medium mb-2">Technologies</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {openProject.technologies.map((tech) => (
-                      <Badge key={tech.name} className={`${tech.color} text-white`}>
-                        {tech.name}
-                      </Badge>
-                    ))}
+
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-medium mb-2">Description</h4>
+                    <p className="text-muted-foreground">
+                      {openProject.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="font-medium mb-2">Technologies</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {openProject.technologies.map((tech) => (
+                        <Badge
+                          key={tech.name}
+                          className={`${tech.color} text-white`}
+                        >
+                          {tech.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-2">
+                    {openProject.demoUrl && (
+                      <Button asChild>
+                        <a
+                          href={openProject.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" /> View Demo
+                        </a>
+                      </Button>
+                    )}
+                    {openProject.codeUrl && (
+                      <Button variant="outline" asChild>
+                        <a
+                          href={openProject.codeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Code className="mr-2 h-4 w-4" /> View Code
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
-                
-                <div className="flex gap-3 pt-2">
-                  {openProject.demoUrl && (
-                    <Button asChild>
-                      <a 
-                        href={openProject.demoUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" /> View Demo
-                      </a>
-                    </Button>
-                  )}
-                  {openProject.codeUrl && (
-                    <Button variant="outline" asChild>
-                      <a 
-                        href={openProject.codeUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                      >
-                        <Code className="mr-2 h-4 w-4" /> View Code
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </DialogContent>
-          )}
+              </>
+            )}
+          </DialogContent>
         </Dialog>
       </div>
     </section>

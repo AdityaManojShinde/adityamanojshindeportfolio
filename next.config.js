@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
-    return config
-  }
-}
+  reactStrictMode: true,
+  images: {
+    domains: ['images.pexels.com'],
+    // If you're using other external image domains, add them here too
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
