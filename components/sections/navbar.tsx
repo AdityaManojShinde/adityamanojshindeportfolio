@@ -15,6 +15,12 @@ interface NavItem {
   href: string;
 }
 
+const links = {
+  github: "https://github.com/AdityaManojShinde",
+  linkedin: "https://www.linkedin.com/in/aditya-manoj-shinde",
+  email: "mailto:aditya.manoj.shinde@gmail.com",
+};
+
 const navItems: NavItem[] = [
   { title: "About", href: "#about" },
   { title: "Projects", href: "#projects" },
@@ -91,7 +97,7 @@ export default function Navbar() {
           ))}
           <div className="flex items-center gap-2">
             <Link
-              href="https://github.com"
+              href={links.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -101,7 +107,7 @@ export default function Navbar() {
               </Button>
             </Link>
             <Link
-              href="https://www.linkedin.com/in/aditya-manoj-shinde"
+              href={links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -110,10 +116,7 @@ export default function Navbar() {
                 <Linkedin className="h-5 w-5" />
               </Button>
             </Link>
-            <Link
-              href="mailto:aditya.manoj.shinde@gmail.com"
-              aria-label="Email"
-            >
+            <Link href={links.email} target="_blank" aria-label="Email">
               <Button variant="ghost" size="icon">
                 <Mail className="h-5 w-5" />
               </Button>
@@ -154,7 +157,7 @@ export default function Navbar() {
               ))}
               <div className="flex items-center gap-4 pt-4 border-t border-border">
                 <Link
-                  href="https://github.com"
+                  href={links.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -164,7 +167,7 @@ export default function Navbar() {
                   </Button>
                 </Link>
                 <Link
-                  href="https://www.linkedin.com/in/aditya-manoj-shinde"
+                  href={links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -173,10 +176,7 @@ export default function Navbar() {
                     <Linkedin className="h-5 w-5" />
                   </Button>
                 </Link>
-                <Link
-                  href="mailto:aditya.manoj.shinde@gmail.com"
-                  aria-label="Email"
-                >
+                <Link href={links.email} aria-label="Email">
                   <Button variant="ghost" size="icon">
                     <Mail className="h-5 w-5" />
                   </Button>

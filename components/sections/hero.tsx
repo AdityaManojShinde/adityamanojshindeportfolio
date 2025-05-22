@@ -69,7 +69,9 @@ export default function Hero() {
             <p className="text-muted-foreground">
               I craft beautiful, intuitive digital experiences that solve real
               problems. Specializing in modern web applications with a focus on
-              performance and accessibility.
+              performance and accessibility. I am passionate about Quantum
+              Computing and AI/ML technologies, and I am always eager to learn
+              and explore new.
             </p>
           </FadeIn>
 
@@ -79,8 +81,11 @@ export default function Hero() {
             className="flex flex-wrap gap-4 pt-4"
           >
             <Button variant={"outline"} asChild>
-              <a href="#projects">
-                View My Work
+              <a
+                href="https://drive.google.com/file/d/14_ogSKML3ZLBXMQQt9AnnIO2Qhw6CMwc/view?usp=sharing"
+                target="_blank"
+              >
+                Download Resume
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
