@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface NavItem {
   title: string;
@@ -67,8 +68,12 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tighter transition-colors hover:text-primary"
+          className="text-xl font-bold tracking-tighter transition-colors hover:text-primary flex gap-2 items-center"
         >
+          <Avatar>
+            <AvatarImage src="\icon.svg" />
+            <AvatarFallback>A</AvatarFallback>
+          </Avatar>
           Aditya Shinde
         </Link>
 

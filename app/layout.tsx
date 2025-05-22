@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     "Professional portfolio showcasing projects, skills, and experience",
   viewport:
     "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
