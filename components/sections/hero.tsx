@@ -67,11 +67,9 @@ export default function Hero() {
 
           <FadeIn direction="up" delay={0.4} className="max-w-[40rem]">
             <p className="text-muted-foreground">
-              I craft beautiful, intuitive digital experiences that solve real
-              problems. Specializing in modern web applications with a focus on
-              performance and accessibility. I am passionate about Quantum
-              Computing and AI/ML technologies, and I am always eager to learn
-              and explore new.
+              Developer by craft, innovator by passion. I build fast, accessible
+              digital experiences while diving deep into AI, Machine Learning,
+              and the quantum future.
             </p>
           </FadeIn>
 

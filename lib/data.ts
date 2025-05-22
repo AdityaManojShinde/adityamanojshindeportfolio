@@ -15,136 +15,151 @@ export const technologies: Record<string, Technology> = {
   aws: { name: "AWS", color: "bg-yellow-500" },
   flutter: { name: "Flutter", color: "bg-blue-400" },
   d3: { name: "D3.js", color: "bg-orange-500" },
-  firebase: { name: "Firebase", color: "bg-yellow-600" }
+  firebase: { name: "Firebase", color: "bg-yellow-600" },
 };
 
 export const projects: Project[] = [
   {
     id: "project-1",
     title: "E-Commerce Platform",
-    description: "A full-featured e-commerce platform with real-time inventory, payment processing, and admin dashboard.",
-    image: "https://images.pexels.com/photos/5698853/pexels-photo-5698853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "A full-featured e-commerce platform with real-time inventory, payment processing, and admin dashboard.",
+    image:
+      "https://images.pexels.com/photos/5698853/pexels-photo-5698853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "Web Development",
     technologies: [
       technologies.react,
       technologies.nextjs,
       technologies.node,
-      technologies.mongodb
+      technologies.mongodb,
     ],
     demoUrl: "https://example.com/demo",
     codeUrl: "https://github.com/username/repo",
-    featured: true
+    featured: true,
   },
   {
     id: "project-2",
     title: "Financial Dashboard",
-    description: "An interactive dashboard for visualizing financial data with customizable charts and real-time updates.",
-    image: "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "An interactive dashboard for visualizing financial data with customizable charts and real-time updates.",
+    image:
+      "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "Data Visualization",
     technologies: [
       technologies.react,
       technologies.typescript,
       technologies.d3,
-      technologies.express
+      technologies.express,
     ],
     demoUrl: "https://example.com/demo",
     codeUrl: "https://github.com/username/repo",
-    featured: true
+    featured: true,
   },
   {
     id: "project-3",
     title: "Fitness Tracking App",
-    description: "A mobile app for tracking workouts, nutrition, and progress with personalized recommendations.",
-    image: "https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "A mobile app for tracking workouts, nutrition, and progress with personalized recommendations.",
+    image:
+      "https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "Mobile App",
     technologies: [
       technologies.flutter,
       technologies.firebase,
-      technologies.node
+      technologies.node,
     ],
     demoUrl: "https://example.com/demo",
     codeUrl: "https://github.com/username/repo",
-    featured: true
+    featured: true,
   },
   {
     id: "project-4",
     title: "Travel Planner",
-    description: "A web application for planning trips, discovering attractions, and sharing itineraries with friends.",
-    image: "https://images.pexels.com/photos/7412069/pexels-photo-7412069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "A web application for planning trips, discovering attractions, and sharing itineraries with friends.",
+    image:
+      "https://images.pexels.com/photos/7412069/pexels-photo-7412069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "Web Development",
     technologies: [
       technologies.react,
       technologies.nextjs,
       technologies.postgres,
-      technologies.graphql
+      technologies.graphql,
     ],
     demoUrl: "https://example.com/demo",
     codeUrl: "https://github.com/username/repo",
-    featured: true
+    featured: true,
   },
   {
     id: "project-5",
     title: "Healthcare Portal Redesign",
-    description: "A comprehensive redesign of a healthcare provider's patient portal, focusing on accessibility and ease of use.",
-    image: "https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "A comprehensive redesign of a healthcare provider's patient portal, focusing on accessibility and ease of use.",
+    image:
+      "https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "UI/UX Design",
     technologies: [
       technologies.figma,
       technologies.react,
-      technologies.tailwind
+      technologies.tailwind,
     ],
     demoUrl: "https://example.com/demo",
-    featured: false
+    featured: false,
   },
   {
     id: "project-6",
     title: "Smart Home Control System",
-    description: "An IoT-based system for controlling home devices with voice commands and automated routines.",
-    image: "https://images.pexels.com/photos/3952048/pexels-photo-3952048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description:
+      "An IoT-based system for controlling home devices with voice commands and automated routines.",
+    image:
+      "https://images.pexels.com/photos/3952048/pexels-photo-3952048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "Web Development",
     technologies: [
       technologies.react,
       technologies.node,
       technologies.mongodb,
-      technologies.aws
+      technologies.aws,
     ],
     demoUrl: "https://example.com/demo",
     codeUrl: "https://github.com/username/repo",
-    featured: false
-  }
+    featured: false,
+  },
 ];
 
 export const education: Education[] = [
   {
     id: "edu-1",
-    institution: "Stanford University",
-    degree: "Master of Science",
-    field: "Computer Science",
-    startDate: "2021",
-    endDate: "2023",
-    description: "Specialized in Human-Computer Interaction and Artificial Intelligence. Completed thesis on adaptive user interfaces.",
-    logo: "https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    institution: "MIT ADT University",
+    degree: "Bachelor of Technology",
+    field: "Information Technology",
+    startDate: "2024",
+    endDate: "2028",
+    description:
+      "Specialized in Human-Computer Interaction and Artificial Intelligence. Participated in various hackathons and coding competitions.",
+    logo: "/icon.svg",
   },
   {
     id: "edu-2",
-    institution: "MIT",
-    degree: "Bachelor of Science",
-    field: "Computer Science and Engineering",
-    startDate: "2017",
-    endDate: "2021",
-    description: "Dean's List for all semesters. Active member of the Robotics Club and Web Development Association.",
-    logo: "https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    institution: "PKMH Jr. College Loni Kalbhor",
+    degree: "HSC",
+    field: "Science",
+    startDate: "2022",
+    endDate: "2023",
+    description:
+      "Completed HSC with a focus on Science and Mathematics. Achieved a score of 61% in the final exams.",
+    logo: "https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "edu-3",
-    institution: "Design Thinking Bootcamp",
-    degree: "Certificate",
-    field: "UI/UX Design",
+    institution: "English Medium School Loni Kalbhor",
+    degree: "SSC",
+    field: "All Subjects",
     startDate: "2020",
-    endDate: "2020",
-    description: "Intensive 12-week program focused on user-centered design principles and methodologies.",
-    logo: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  }
+    endDate: "2021",
+    description:
+      "Completed SSC with a focus on all subjects. Achieved a score of 82.40% in the final exams.",
+    logo: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  },
 ];
 
 export const certifications: Certification[] = [
@@ -155,7 +170,7 @@ export const certifications: Certification[] = [
     issueDate: "June 2024",
     expirationDate: "June 2027",
     credentialUrl: "https://example.com/credential",
-    logo: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    logo: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-2",
@@ -163,7 +178,7 @@ export const certifications: Certification[] = [
     issuer: "Google",
     issueDate: "March 2024",
     credentialUrl: "https://example.com/credential",
-    logo: "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    logo: "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-3",
@@ -172,7 +187,7 @@ export const certifications: Certification[] = [
     issueDate: "January 2024",
     expirationDate: "January 2027",
     credentialUrl: "https://example.com/credential",
-    logo: "https://images.pexels.com/photos/11035386/pexels-photo-11035386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    logo: "https://images.pexels.com/photos/11035386/pexels-photo-11035386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-4",
@@ -181,7 +196,7 @@ export const certifications: Certification[] = [
     issueDate: "November 2023",
     expirationDate: "November 2025",
     credentialUrl: "https://example.com/credential",
-    logo: "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    logo: "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-5",
@@ -190,6 +205,6 @@ export const certifications: Certification[] = [
     issueDate: "August 2023",
     expirationDate: "August 2026",
     credentialUrl: "https://example.com/credential",
-    logo: "https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  }
+    logo: "https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  },
 ];

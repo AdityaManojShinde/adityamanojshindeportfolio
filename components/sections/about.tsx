@@ -94,31 +94,30 @@ export default function About() {
           <FadeIn direction="right" delay={0.2}>
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground">
-                I&apos;m a passionate full-stack developer and UI/UX designer
-                with over 5 years of experience creating elegant digital
-                solutions. My journey began with a curiosity about how things
-                work, which evolved into a deep understanding of both the
-                technical and human aspects of software development.
+                I&apos;m a passionate web developer and tech enthusiast
+                currently pursuing my B.Tech in Information Technology at MIT
+                ADT University.
               </p>
               <p className="text-lg text-muted-foreground">
-                I believe in writing clean, maintainable code and designing
-                intuitive interfaces that prioritize the user&apos;s needs. My
-                approach combines technical excellence with aesthetic
-                sensibility to create products that are both functional and
-                beautiful.
+                I specialize in building modern, responsive, and accessible web
+                applications that not only look great but also solve real-world
+                problems. My core strengths lie in performance optimization,
+                clean UI/UX, and writing scalable, maintainable code.
               </p>
               <p className="text-lg text-muted-foreground">
-                When I&apos;m not coding, you&apos;ll find me exploring new
-                design trends, contributing to open-source projects, or
-                experimenting with new technologies to stay at the cutting edge
-                of web development.
+                Beyond web development, I&apos;m deeply fascinated by Quantum
+                Computing and AI/ML technologies. I constantly explore how these
+                cutting-edge fields can be applied to build smarter, more
+                efficient digital solutions. Whether it&apos;s developing
+                intuitive user interfaces or experimenting with the latest in
+                artificial intelligence, I&apos;m always eager to learn, build,
+                and contribute to meaningful projects.
               </p>
               <div>
                 <Button variant="outline" asChild>
                   <a
-                    href="/resume.pdf"
+                    href="https://drive.google.com/file/d/14_ogSKML3ZLBXMQQt9AnnIO2Qhw6CMwc/view?usp=sharing"
                     target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex items-center"
                   >
                     View Full Resume
@@ -131,7 +130,7 @@ export default function About() {
 
           <FadeIn direction="left" delay={0.4}>
             <Tabs defaultValue="Frontend" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1">
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4  gap-1">
                 {skillCategories.map((category) => (
                   <TabsTrigger
                     key={category.title}
@@ -154,7 +153,7 @@ export default function About() {
                 <TabsContent
                   key={category.title}
                   value={category.title}
-                  className="mt-6"
+                  className="mt-20 md:mt-10"
                 >
                   <Card>
                     <CardHeader>

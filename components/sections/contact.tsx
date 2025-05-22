@@ -32,6 +32,11 @@ interface FormErrors {
 }
 
 export default function Contact() {
+  const links = {
+    github: "https://github.com/AdityaManojShinde",
+    linkedin: "https://www.linkedin.com/in/aditya-manoj-shinde",
+    email: "aditya.manoj.shinde@gmail.com",
+  };
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -146,7 +151,7 @@ export default function Contact() {
                 <div>
                   <h3 className="font-medium">Location</h3>
                   <p className="text-muted-foreground">
-                    San Francisco, California
+                    India, Maharashtra, Pune
                   </p>
                 </div>
               </div>
@@ -159,7 +164,7 @@ export default function Contact() {
                     href="mailto:aditya.manoj.shinde@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    aditya.manoj.shinde@gmail.com
+                    {links.email}
                   </a>
                 </div>
               </div>
@@ -168,7 +173,7 @@ export default function Contact() {
                 <Phone className="h-6 w-6 text-primary mt-1" />
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-muted-foreground">+91 8767376654</p>
                 </div>
               </div>
 
@@ -176,7 +181,7 @@ export default function Contact() {
                 <h3 className="font-medium mb-4">Connect with me</h3>
                 <div className="flex space-x-4">
                   <a
-                    href="https://github.com"
+                    href={links.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-card hover:bg-card/80 p-3 rounded-full transition-colors"
@@ -185,7 +190,7 @@ export default function Contact() {
                     <Github className="h-6 w-6" />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/aditya-manoj-shinde"
+                    href={links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-card hover:bg-card/80 p-3 rounded-full transition-colors"
