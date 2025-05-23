@@ -165,46 +165,65 @@ export const education: Education[] = [
 export const certifications: Certification[] = [
   {
     id: "cert-1",
-    title: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services",
-    issueDate: "June 2024",
-    expirationDate: "June 2027",
-    credentialUrl: "https://example.com/credential",
+    title: "Using Python to Interact with the Operating System",
+    issuer: "Google",
+    issueDate: "Sep 2024",
+    credentialUrl:
+      "https://coursera.org/share/f6ba2aed229fbf2916b61c25b5e38614",
     logo: "https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-2",
-    title: "Google UX Design Professional Certificate",
+    title: "Introduction to Git and GitHub",
     issuer: "Google",
-    issueDate: "March 2024",
-    credentialUrl: "https://example.com/credential",
+    issueDate: "Dec 2024",
+    credentialUrl:
+      "https://www.coursera.org/account/accomplishments/verify/F9FV6QGYEXCD",
     logo: "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-3",
-    title: "MongoDB Certified Developer",
-    issuer: "MongoDB University",
-    issueDate: "January 2024",
-    expirationDate: "January 2027",
-    credentialUrl: "https://example.com/credential",
+    title: "Certificate for the Completion of  Python 3.4.3 Training",
+    issuer: "Indian Institute of Technology, Bombay (IIT Bombay)",
+    issueDate: "Dec 2024",
+    credentialUrl:
+      "https://spoken-tutorial.org/software-training/test/verify-test-certificate/",
     logo: "https://images.pexels.com/photos/11035386/pexels-photo-11035386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-4",
-    title: "Microsoft Certified: Azure Developer Associate",
-    issuer: "Microsoft",
-    issueDate: "November 2023",
-    expirationDate: "November 2025",
-    credentialUrl: "https://example.com/credential",
+    title: "Crash Course on Python by Google",
+    issuer: "Google",
+    issueDate: "August 2024",
+    credentialUrl:
+      "https://coursera.org/share/987d6f86315e0b2d8e9ffc2b9f5b242d",
     logo: "https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "cert-5",
-    title: "Certified Kubernetes Administrator",
-    issuer: "Cloud Native Computing Foundation",
-    issueDate: "August 2023",
-    expirationDate: "August 2026",
-    credentialUrl: "https://example.com/credential",
+    title: "React Essential Training",
+    issuer: "LinkedIn",
+    issueDate: "Dec 2024",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/0965bfd4369828b62ae5a83fccc851748b2a4c2567f19d198aff0215e58e45c0",
+    logo: "https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  },
+  {
+    id: "cert-5",
+    title: "Flutter and dart - The Complete Guide[2023 Edition]",
+    issuer: "Academind",
+    issueDate: "Dec 2023",
+    credentialUrl:
+      "https://udemy-certificate.s3.amazonaws.com/image/UC-381c86a2-94b1-4fb6-adf7-6e8baa4902e4.jpg",
+    logo: "https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  },
+  {
+    id: "cert-5",
+    title: "The Complete Web Development Bootcamp",
+    issuer: "Udemy",
+    issueDate: "August 2024",
+    credentialUrl:
+      "https://www.udemy.com/certificate/UC-196774d1-32a1-4f8f-9c87-3a50af23edd1/",
     logo: "https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
 ];
