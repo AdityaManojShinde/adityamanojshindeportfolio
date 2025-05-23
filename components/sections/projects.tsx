@@ -76,6 +76,7 @@ export default function Projects() {
     "All",
     "Web Development",
     "Mobile App",
+    "Python",
     "UI/UX Design",
     "Data Visualization",
   ];

@@ -14,6 +14,9 @@ export interface Project {
 export type ProjectCategory =
   | "Web Development"
   | "Mobile App"
+  | "Python"
+  | "AI/ML"
+  | "Data Science"
   | "UI/UX Design"
   | "Data Visualization";
 

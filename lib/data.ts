@@ -16,6 +16,7 @@ export const technologies: Record<string, Technology> = {
   flutter: { name: "Flutter", color: "bg-blue-400" },
   d3: { name: "D3.js", color: "bg-orange-500" },
   firebase: { name: "Firebase", color: "bg-yellow-600" },
+  python: { name: "Python", color: "bg-yellow-600" },
 };
 
 export const projects: Project[] = [
@@ -39,7 +40,7 @@ export const projects: Project[] = [
   {
     id: "project-2",
     title:
-      "Indian Startup Business – Frontend Development with Next.js & Tailwind CSS",
+      "Indian Startup Business : Frontend Development with Next.js & Tailwind CSS",
     description:
       "Built the complete frontend for IndianStartupBusiness.com using Next.js and Tailwind CSS. The project features a responsive, modern UI with fast-loading pages and smooth navigation. Emphasized clean design and scalability to reflect the company's IT consulting and service offerings. Ensured SEO-friendly structure and optimal performance across all devices.",
     image: "/projects/isb.jpg",
@@ -56,37 +57,24 @@ export const projects: Project[] = [
   },
   {
     id: "project-3",
-    title: "Fitness Tracking App",
-    description:
-      "A mobile app for tracking workouts, nutrition, and progress with personalized recommendations.",
-    image:
-      "https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Dino News",
+    description: `The Riverpod-powered News App is designed to provide users with a clean and efficient user interface, built using Flutter for a smooth and visually appealing experience across various devices. It utilizes Riverpod for state management, ensuring the app remains well-organized and highly responsive to changes in data. By integrating with NewsAPI.org, the app delivers a vast array of news articles from multiple sources, keeping users informed with fresh and diverse content. Additionally, the app features regularly updated news feeds and supports both custom light and dark themes, offering a personalized and dynamic reading experience.`,
+    image: "/projects/dinonews.jpg",
     category: "Mobile App",
-    technologies: [
-      technologies.flutter,
-      technologies.firebase,
-      technologies.node,
-    ],
-    demoUrl: "https://example.com/demo",
-    codeUrl: "https://github.com/username/repo",
+    videoUrl: "https://www.youtube.com/watch?v=6lxMS9laKAk",
+    technologies: [technologies.flutter, technologies.firebase],
+    codeUrl: "https://github.com/AdityaManojShinde/newsapp",
     featured: true,
   },
   {
     id: "project-4",
-    title: "Travel Planner",
+    title: "Instagram Reel Downloader",
     description:
-      "A web application for planning trips, discovering attractions, and sharing itineraries with friends.",
-    image:
-      "https://images.pexels.com/photos/7412069/pexels-photo-7412069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    category: "Web Development",
-    technologies: [
-      technologies.react,
-      technologies.nextjs,
-      technologies.postgres,
-      technologies.graphql,
-    ],
-    demoUrl: "https://example.com/demo",
-    codeUrl: "https://github.com/username/repo",
+      "Instagram Reel Downloader is a Python application that allows you to download Instagram Reels using their URLs. The application provides a graphical user interface (GUI) built with Tkinter and uses the Instaloader library to handle the downloading process.",
+    image: "/projects/reeldownloder.jpg",
+    category: "Python",
+    technologies: [technologies.python],
+    codeUrl: "https://github.com/AdityaManojShinde/Instagram-Reels-Downloader",
     featured: true,
   },
   {
