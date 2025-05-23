@@ -5,15 +5,16 @@ export interface Project {
   image: string;
   category: ProjectCategory;
   technologies: Technology[];
+  videoUrl?: string;
   demoUrl?: string;
   codeUrl?: string;
   featured: boolean;
 }
 
-export type ProjectCategory = 
-  | "Web Development" 
-  | "Mobile App" 
-  | "UI/UX Design" 
+export type ProjectCategory =
+  | "Web Development"
+  | "Mobile App"
+  | "UI/UX Design"
   | "Data Visualization";
 
 export interface Technology {

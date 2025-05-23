@@ -21,20 +21,19 @@ export const technologies: Record<string, Technology> = {
 export const projects: Project[] = [
   {
     id: "project-1",
-    title: "E-Commerce Platform",
-    description:
-      "A full-featured e-commerce platform with real-time inventory, payment processing, and admin dashboard.",
-    image:
-      "https://images.pexels.com/photos/5698853/pexels-photo-5698853.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "PipelineAI : Modern AI SaaS Landing Page (Next.js + Tailwind CSS)",
+    description: `PipelineAI is a clean, modern, and fully responsive landing page designed for AI SaaS platforms. Built using Next.js and Tailwind CSS, this project delivers a fast, lightweight frontend with a professional UI and smooth user experience. It leverages the power of Next.js for performance and scalability, and Tailwind CSS for rapid UI development with utility-first styling. The design is fully responsive, ensuring a great experience across all devices, and the codebase is clean and developer-friendly, making it easy to customize. This landing page is perfect for startups, AI tools, or any tech-based product looking to establish a sleek and effective online presence.`,
+    image: "/projects/pipelineai.jpg",
     category: "Web Development",
+    videoUrl: "https://www.youtube.com/watch?v=sKj8XtBegPY",
     technologies: [
       technologies.react,
       technologies.nextjs,
       technologies.node,
-      technologies.mongodb,
+      technologies.tailwind,
     ],
-    demoUrl: "https://example.com/demo",
-    codeUrl: "https://github.com/username/repo",
+    demoUrl: "https://piplineai.vercel.app/",
+    codeUrl: "https://github.com/AdityaManojShinde/piplineai",
     featured: true,
   },
   {

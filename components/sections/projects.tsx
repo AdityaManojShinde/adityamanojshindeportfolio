@@ -1,6 +1,31 @@
 "use client";
 
 import { useState } from "react";
+
+// Helper function to convert YouTube URL to embed URL
+const getYouTubeEmbedUrl = (url: string): string => {
+  // Handle different YouTube URL formats
+  const patterns = [
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\n?#]+)/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^&\n?#]+)/,
+    /(?:https?:\/\/)?youtu\.be\/([^&\n?#]+)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+  }
+
+  // If it's already an embed URL, return as is
+  if (url.includes("youtube.com/embed/")) {
+    return url;
+  }
+
+  // Fallback - return the original URL
+  return url;
+};
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, Code, ExternalLink } from "lucide-react";
 import {
@@ -119,7 +144,10 @@ export default function Projects() {
                           size="sm"
                           onClick={() => handleOpenProject(project)}
                         >
-                          <Eye className="mr-2 h-4 w-4" /> View Details
+                          <div className="text-white flex items-center">
+                            <Eye color="white" className="mr-2 h-4 w-4 " /> View
+                            Details
+                          </div>
                         </Button>
                       </div>
                     </div>
@@ -130,7 +158,9 @@ export default function Projects() {
                           <Badge variant="secondary">Featured</Badge>
                         )}
                       </div>
-                      <CardTitle className="text-xl">{project.title}</CardTitle>
+                      <CardTitle className="text-xl line-clamp-1">
+                        {project.title}
+                      </CardTitle>
                       <CardDescription className="line-clamp-2">
                         {project.description}
                       </CardDescription>
@@ -179,74 +209,121 @@ export default function Projects() {
         </StaggerChildren>
 
         <Dialog open={!!openProject} onOpenChange={handleCloseProject}>
-          <DialogContent className="max-w-3xl bg-white dark:bg-slate-900">
+          <DialogContent className="max-w-4xl w-[95vw] h-[90vh] max-h-[90vh] bg-white dark:bg-slate-900 p-0 overflow-hidden flex flex-col rounded-lg sm:rounded-xl">
             {openProject && (
               <>
-                <DialogHeader>
-                  <DialogTitle className="text-2xl">
+                {/* Fixed Header */}
+                <DialogHeader className="px-4 sm:px-6 pt-4 sm:pt-6 pb-4 border-b bg-white dark:bg-slate-900 shrink-0">
+                  <DialogTitle className="text-xl sm:text-2xl pr-8">
                     {openProject.title}
                   </DialogTitle>
-                  <DialogDescription>
-                    <Badge className="mt-2">{openProject.category}</Badge>
+                  <DialogDescription className="mt-2">
+                    <Badge>{openProject.category}</Badge>
                   </DialogDescription>
                 </DialogHeader>
 
-                <div className="aspect-video w-full overflow-hidden rounded-md relative">
-                  <Image
-                    src={openProject.image}
-                    alt={openProject.title}
-                    fill
-                    className="object-cover w-full h-full"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={openProject.featured}
-                  />
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-medium mb-2">Description</h4>
-                    <p className="text-muted-foreground">
-                      {openProject.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-medium mb-2">Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {openProject.technologies.map((tech) => (
-                        <Badge
-                          key={tech.name}
-                          className={`${tech.color} text-white`}
-                        >
-                          {tech.name}
-                        </Badge>
-                      ))}
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto overscroll-contain">
+                  <div className="px-4 sm:px-6 py-4 sm:py-6 space-y-6">
+                    {/* Project Video or Image - Now with smaller, more appropriate size */}
+                    <div className="w-full max-w-2xl mx-auto">
+                      <div className="aspect-video w-full overflow-hidden rounded-lg relative bg-gray-100 dark:bg-gray-800">
+                        {openProject.videoUrl ? (
+                          <div className="relative w-full h-full">
+                            {/* Thumbnail shown during loading */}
+                            <Image
+                              src={openProject.image}
+                              alt={openProject.title}
+                              fill
+                              className="object-cover w-full h-full"
+                              sizes="(max-width: 768px) 95vw, 672px"
+                              priority={openProject.featured}
+                            />
+                            {/* YouTube embed with autoplay */}
+                            <iframe
+                              src={`${getYouTubeEmbedUrl(
+                                openProject.videoUrl
+                              )}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1`}
+                              title={openProject.title}
+                              className="absolute inset-0 w-full h-full rounded-lg"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              referrerPolicy="strict-origin-when-cross-origin"
+                              loading="lazy"
+                            />
+                          </div>
+                        ) : (
+                          <Image
+                            src={openProject.image}
+                            alt={openProject.title}
+                            fill
+                            className="object-cover w-full h-full"
+                            sizes="(max-width: 768px) 95vw, 672px"
+                            priority={openProject.featured}
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex gap-3 pt-2">
-                    {openProject.demoUrl && (
-                      <Button asChild>
-                        <a
-                          href={openProject.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" /> View Demo
-                        </a>
-                      </Button>
-                    )}
-                    {openProject.codeUrl && (
-                      <Button variant="outline" asChild>
-                        <a
-                          href={openProject.codeUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Code className="mr-2 h-4 w-4" /> View Code
-                        </a>
-                      </Button>
-                    )}
+                    {/* Project Details */}
+                    <div className="space-y-6 w-full max-w-2xl mx-auto">
+                      <div>
+                        <h4 className="font-semibold text-base sm:text-lg mb-3">
+                          Description
+                        </h4>
+                        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                          {openProject.description}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-base sm:text-lg mb-3">
+                          Technologies
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {openProject.technologies.map((tech) => (
+                            <Badge
+                              key={tech.name}
+                              className={`bg-slate-900 dark:bg-black text-white text-xs sm:text-sm p-2 rounded-sm shadow-sm hover:bg-blue-500`}
+                            >
+                              {tech.name}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex flex-col sm:flex-row gap-3 pt-4 pb-6">
+                        {openProject.demoUrl && (
+                          <Button asChild className="w-full sm:w-auto">
+                            <a
+                              href={openProject.demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              View Demo
+                            </a>
+                          </Button>
+                        )}
+                        {openProject.codeUrl && (
+                          <Button
+                            variant="outline"
+                            asChild
+                            className="w-full sm:w-auto"
+                          >
+                            <a
+                              href={openProject.codeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Code className="mr-2 h-4 w-4" />
+                              View Code
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </>
