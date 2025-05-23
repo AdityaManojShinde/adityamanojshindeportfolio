@@ -38,20 +38,20 @@ export const projects: Project[] = [
   },
   {
     id: "project-2",
-    title: "Financial Dashboard",
+    title:
+      "Indian Startup Business – Frontend Development with Next.js & Tailwind CSS",
     description:
-      "An interactive dashboard for visualizing financial data with customizable charts and real-time updates.",
-    image:
-      "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    category: "Data Visualization",
+      "Built the complete frontend for IndianStartupBusiness.com using Next.js and Tailwind CSS. The project features a responsive, modern UI with fast-loading pages and smooth navigation. Emphasized clean design and scalability to reflect the company's IT consulting and service offerings. Ensured SEO-friendly structure and optimal performance across all devices.",
+    image: "/projects/isb.jpg",
+    category: "Web Development",
     technologies: [
       technologies.react,
       technologies.typescript,
-      technologies.d3,
-      technologies.express,
+      technologies.nextjs,
+      technologies.tailwind,
     ],
-    demoUrl: "https://example.com/demo",
-    codeUrl: "https://github.com/username/repo",
+    demoUrl: "https://indianstartupbusiness.com/",
+    codeUrl: "https://github.com/AdityaManojShinde/isb_website",
     featured: true,
   },
   {
