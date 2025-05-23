@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/AdityaManojShinde"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center"
@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center ">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Aditya Shinde. All rights reserved.
           </p>

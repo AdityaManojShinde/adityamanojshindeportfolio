@@ -11,12 +11,13 @@ export const technologies: Record<string, Technology> = {
   graphql: { name: "GraphQL", color: "bg-pink-600" },
   tailwind: { name: "Tailwind CSS", color: "bg-cyan-400" },
   figma: { name: "Figma", color: "bg-purple-500" },
-  docker: { name: "Docker", color: "bg-blue-500" },
+  docker: { name: "Docker", color: "bg-blue-500" }, // already correct
   aws: { name: "AWS", color: "bg-yellow-500" },
   flutter: { name: "Flutter", color: "bg-blue-400" },
+  dart: { name: "Dart", color: "bg-blue-400" },
   d3: { name: "D3.js", color: "bg-orange-500" },
   firebase: { name: "Firebase", color: "bg-yellow-600" },
-  python: { name: "Python", color: "bg-yellow-600" },
+  python: { name: "Python", color: "bg-yellow-500" },
 };
 
 export const projects: Project[] = [
@@ -79,36 +80,25 @@ export const projects: Project[] = [
   },
   {
     id: "project-5",
-    title: "Healthcare Portal Redesign",
+    title: "Tic Tac Toe Lite",
     description:
-      "A comprehensive redesign of a healthcare provider's patient portal, focusing on accessibility and ease of use.",
-    image:
-      "https://images.pexels.com/photos/7579831/pexels-photo-7579831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    category: "UI/UX Design",
-    technologies: [
-      technologies.figma,
-      technologies.react,
-      technologies.tailwind,
-    ],
-    demoUrl: "https://example.com/demo",
+      "Classic Tic Tac Toe game built with Flutter for a smooth and responsive user experience and Riverpod for state management.",
+    image: "/projects/tictactoelite.jpg",
+    category: "Mobile App",
+    technologies: [technologies.flutter, technologies.dart],
+    codeUrl: "https://github.com/AdityaManojShinde/tictactoe_lite",
     featured: false,
   },
   {
     id: "project-6",
-    title: "Smart Home Control System",
+    title: "Python QR Code Generator",
     description:
-      "An IoT-based system for controlling home devices with voice commands and automated routines.",
-    image:
-      "https://images.pexels.com/photos/3952048/pexels-photo-3952048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "This Python application, built using Tkinter and the QRcode library, enables users to generate customized QR codes with ease. It offers several key features designed for flexibility and usability. Users can personalize their QR codes by selecting custom foreground and background colors, ensuring the design aligns with their preferences. The application also allows for adjustable sizing, including border and box dimensions, to optimize the appearance of the QR code. With a responsive user interface, it ensures a smooth experience across different screen sizes. Additionally, users can conveniently choose the location and filename for saving their generated QR codes, making storage and access straightforward.",
+    image: "/projects/qrcodegen.jpg",
     category: "Web Development",
-    technologies: [
-      technologies.react,
-      technologies.node,
-      technologies.mongodb,
-      technologies.aws,
-    ],
-    demoUrl: "https://example.com/demo",
-    codeUrl: "https://github.com/username/repo",
+    technologies: [technologies.python],
+
+    codeUrl: "https://github.com/AdityaManojShinde/QR-Code-Generator",
     featured: false,
   },
 ];

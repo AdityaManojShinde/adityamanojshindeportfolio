@@ -171,7 +171,9 @@ export default function Projects() {
                         {project.technologies.map((tech) => (
                           <Badge
                             key={tech.name}
-                            className={`${tech.color} text-white`}
+                            className={`
+                              bg-slate-900 dark:bg-white dark:text-black
+                             text-white hover:bg-blue-500`}
                           >
                             {tech.name}
                           </Badge>
@@ -285,7 +287,7 @@ export default function Projects() {
                           {openProject.technologies.map((tech) => (
                             <Badge
                               key={tech.name}
-                              className={`bg-slate-900 dark:bg-black text-white text-xs sm:text-sm p-2 rounded-sm shadow-sm hover:bg-blue-500`}
+                              className={`bg-slate-900 dark:bg-white dark:text-black text-white text-xs sm:text-sm p-2 rounded-sm shadow-sm hover:bg-blue-500`}
                             >
                               {tech.name}
                             </Badge>
