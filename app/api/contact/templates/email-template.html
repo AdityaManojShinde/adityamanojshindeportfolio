@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .email-container {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .email-header {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .email-body {
+      padding: 20px;
+      background-color: #ffffff;
+    }
+    .email-footer {
+      background-color: #f9fafb;
+      padding: 15px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+      border-top: 1px solid #e0e0e0;
+    }
+    .info-item {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .info-item:last-child {
+      border-bottom: none;
+    }
+    .label {
+      font-weight: 600;
+      color: #4f46e5;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .message-content {
+      background-color: #f9fafb;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #6366f1;
+    }
+    .timestamp {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="email-header">
+      <h2>New Portfolio Contact Message</h2>
+    </div>
+    <div class="email-body">
+      <div class="info-item">
+        <span class="label">From:</span>
+        {{name}}<br>
+        <a href="mailto:{{email}}" style="color: #4f46e5;">{{email}}</a>
+      </div>
+      <div class="info-item">
+        <span class="label">Subject:</span>
+        {{subject}}
+      </div>
+      <div class="info-item">
+        <span class="label">Message:</span>
+        <div class="message-content">
+          {{message}}
+        </div>
+      </div>
+      <div class="timestamp">
+        Received on {{timestamp}}
+      </div>
+    </div>
+    <div class="email-footer">
+      This message was sent from your portfolio contact form.
+    </div>
+  </div>
+</body>
+</html>

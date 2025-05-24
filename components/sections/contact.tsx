@@ -96,11 +96,23 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      // This would normally send the form data to a server
-      console.log("Form submitted:", formData);
+      console.log('Submitting form data:', formData);
+      
+      // Send the form data to our API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const data = await response.json();
+      console.log('API response:', data);
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
 
       setSubmitted(true);
       setFormData({
@@ -111,6 +123,7 @@ export default function Contact() {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      alert("Failed to send message. Please try again later.");
     } finally {
       setLoading(false);
     }
