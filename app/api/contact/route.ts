@@ -18,32 +18,38 @@ export async function POST(request: Request) {
       );
     }
 
-    // Hardcoded SMTP credentials for testing
-    const smtpConfig = {
-      host: 'smtp-relay.brevo.com',
-      port: 587,
-      user: '8da524001@smtp-brevo.com',
-      pass: '9JxcD0Fmy67Z1pP3',
-      to: 'aditya.manoj.shinde@gmail.com'
-    };
+    // Get environment variables
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = parseInt(process.env.SMTP_PORT || '587');
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPassword = process.env.SMTP_PASSWORD;
+    const emailTo = 'aditya.manoj.shinde@gmail.com';
+
+    // Validate environment variables
+    if (!smtpHost || !smtpUser || !smtpPassword) {
+      console.error('Missing SMTP configuration');
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
     
     console.log('Using SMTP configuration:', {
-      host: smtpConfig.host,
-      port: smtpConfig.port,
-      user: smtpConfig.user,
-      // Password hidden for security
-      to: smtpConfig.to
+      host: smtpHost,
+      port: smtpPort,
+      user: smtpUser,
+      to: emailTo
     });
 
     try {
-      // Create transporter with direct configuration
+      // Create transporter with environment variables
       const transporter = nodemailer.createTransport({
-        host: smtpConfig.host,
-        port: smtpConfig.port,
+        host: smtpHost,
+        port: smtpPort,
         secure: false,
         auth: {
-          user: smtpConfig.user,
-          pass: smtpConfig.pass,
+          user: smtpUser,
+          pass: smtpPassword,
         },
         debug: true, // Enable debug output
         logger: true // Log information to the console
@@ -68,8 +74,8 @@ export async function POST(request: Request) {
       
       // Email content
       const mailOptions = {
-        from: `"Portfolio Contact Form" <${smtpConfig.user}>`,
-        to: smtpConfig.to,
+        from: `"Portfolio Contact Form" <${smtpUser}>`,
+        to: emailTo,
         replyTo: email,
         subject: `Portfolio Contact: ${subject}`,
         text: `
@@ -82,11 +88,11 @@ export async function POST(request: Request) {
         html: htmlContent,
       };
 
-      console.log('Attempting to send email to:', smtpConfig.to);
+      console.log('Attempting to send email to:', emailTo);
       
       // Send email and wait for result
       const info = await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully:', info);
+      console.log('Email sent successfully:', info.messageId);
       
       // Close the connection after sending
       transporter.close();
