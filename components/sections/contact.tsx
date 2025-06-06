@@ -10,6 +10,7 @@ import {
   CheckCircle,
   MapPin,
   Phone,
+  AlertCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,8 +38,10 @@ export default function Contact() {
     linkedin: "https://www.linkedin.com/in/aditya-manoj-shinde",
     email: "aditya.manoj.shinde@gmail.com",
   };
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -84,10 +87,18 @@ export default function Contact() {
         [field]: undefined,
       }));
     }
+
+    // Clear submit error when user starts typing
+    if (submitError) {
+      setSubmitError(null);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Clear any previous errors
+    setSubmitError(null);
 
     if (!validateForm()) {
       return;
@@ -96,24 +107,30 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      console.log('Submitting form data:', formData);
-      
+      console.log("Submitting form data:", formData);
+
       // Send the form data to our API endpoint
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
+      // Parse response data
       const data = await response.json();
-      console.log('API response:', data);
-      
+      console.log("API response:", data);
+
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
+        // Handle API errors
+        const errorMessage =
+          data.error || data.message || `Server error: ${response.status}`;
+        throw new Error(errorMessage);
       }
 
+      // Success - show success message
+      console.log("Email sent successfully:", data);
       setSubmitted(true);
       setFormData({
         name: "",
@@ -121,16 +138,25 @@ export default function Contact() {
         subject: "",
         message: "",
       });
+      setErrors({});
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Failed to send message. Please try again later.");
+
+      // Set user-friendly error message
+      if (error instanceof Error) {
+        setSubmitError(error.message);
+      } else {
+        setSubmitError("Failed to send message. Please try again later.");
+      }
     } finally {
+      // Always stop loading, regardless of success or failure
       setLoading(false);
     }
   };
 
   const resetForm = () => {
     setSubmitted(false);
+    setSubmitError(null);
     setFormData({
       name: "",
       email: "",
@@ -242,6 +268,20 @@ export default function Contact() {
               </div>
             ) : (
               <div className="bg-card p-8 rounded-lg shadow-sm">
+                {submitError && (
+                  <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start space-x-3">
+                    <AlertCircle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm text-destructive font-medium">
+                        Error sending message
+                      </p>
+                      <p className="text-sm text-destructive/80 mt-1">
+                        {submitError}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
@@ -254,6 +294,7 @@ export default function Contact() {
                           handleInputChange("name", e.target.value)
                         }
                         className={errors.name ? "border-destructive" : ""}
+                        disabled={loading}
                       />
                       {errors.name && (
                         <p className="text-sm text-destructive">
@@ -272,6 +313,7 @@ export default function Contact() {
                           handleInputChange("email", e.target.value)
                         }
                         className={errors.email ? "border-destructive" : ""}
+                        disabled={loading}
                       />
                       {errors.email && (
                         <p className="text-sm text-destructive">
@@ -290,6 +332,7 @@ export default function Contact() {
                         handleInputChange("subject", e.target.value)
                       }
                       className={errors.subject ? "border-destructive" : ""}
+                      disabled={loading}
                     />
                     {errors.subject && (
                       <p className="text-sm text-destructive">
@@ -309,6 +352,7 @@ export default function Contact() {
                       onChange={(e) =>
                         handleInputChange("message", e.target.value)
                       }
+                      disabled={loading}
                     />
                     {errors.message && (
                       <p className="text-sm text-destructive">
