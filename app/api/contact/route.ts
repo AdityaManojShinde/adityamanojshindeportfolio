@@ -43,64 +43,96 @@ export async function POST(request: Request) {
       to: ["gitpushforcev2@gmail.com"], // Recipient email address
       subject: `Portfolio Contact: ${subject}`, // Subject line for the email
       html: `
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Message</title>
+    <title>New User Message</title>
     <style>
+        /* Reset styles for email clients */
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
         }
-        .message-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .message-container h1 {
-            color: #1a202c;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        .message-container h2 {
-            color: #2d3748;
-            font-size: 1.6em;
-            margin-bottom: 15px;
-        }
-        .message-container p {
-            color: #4a5568;
-            line-height: 1.7;
-            white-space: pre-wrap; /* Ensures line breaks are preserved */
-            background-color: #f7fafc;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #e2e8f0;
-        }
-        .message-container strong {
-            color: #000;
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+                padding: 15px !important;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="message-container">
-        <h1><strong>Name:</strong> ${name}</h1>
-        <h2><strong>Email:</strong> ${email}</h2>
-        <h2><strong>Message:</strong></h2>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-    </div>
+<body style="background-color: #f8fafc; margin: 0; padding: 20px 0;">
+    <!-- Container table -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 650px; margin: 0 auto;">
+        <tr>
+            <td align="center" style="padding: 30px 0;">
+                <!-- Header with accent color -->
+                <table width="100%" style="background-color: #4361ee; border-radius: 10px 10px 0 0;">
+                    <tr>
+                        <td style="padding: 25px 30px; text-align: center;">
+                            <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 600;">New Message Received</h1>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Content Card -->
+                <table width="100%" style="background-color: #ffffff; border-radius: 0 0 10px 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                    <tr>
+                        <td class="container" style="padding: 35px 40px;">
+                            <!-- Sender Info -->
+                            <table width="100%">
+                                <tr>
+                                    <td style="padding-bottom: 20px;">
+                                        <div style="font-size: 18px; color: #2d3748; font-weight: 600; margin-bottom: 5px;">From:</div>
+                                        <div style="font-size: 20px; color: #1e40af; margin-bottom: 3px;">${name}</div>
+                                        <a href="mailto:${email}" style="font-size: 16px; color: #4361ee; text-decoration: none;">${email}</a>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Message Header -->
+                                <tr>
+                                    <td style="padding: 25px 0 15px 0; border-top: 1px solid #edf2f7;">
+                                        <h2 style="font-size: 20px; color: #2d3748; margin: 0; font-weight: 600;">Message:</h2>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Message Content -->
+                                <tr>
+                                    <td style="padding: 20px; background-color: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                        <p style="font-size: 16px; line-height: 1.6; color: #4a5568; margin: 0;">
+                                            ${message.replace(/\n/g, "<br>")}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 25px 40px; background-color: #f1f5f9; border-radius: 0 0 10px 10px; border-top: 1px solid #e2e8f0; text-align: center;">
+                            <p style="font-size: 14px; color: #718096; margin: 0;">
+                                This message was sent via your website contact form
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 
