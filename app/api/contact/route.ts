@@ -43,12 +43,66 @@ export async function POST(request: Request) {
       to: ["gitpushforcev2@gmail.com"], // Recipient email address
       subject: `Portfolio Contact: ${subject}`, // Subject line for the email
       html: `
-      <div>
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .message-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .message-container h1 {
+            color: #1a202c;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .message-container h2 {
+            color: #2d3748;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+        .message-container p {
+            color: #4a5568;
+            line-height: 1.7;
+            white-space: pre-wrap; /* Ensures line breaks are preserved */
+            background-color: #f7fafc;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+        }
+        .message-container strong {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
         <h1><strong>Name:</strong> ${name}</h1>
         <h2><strong>Email:</strong> ${email}</h2>
         <h2><strong>Message:</strong></h2>
         <p>${message.replace(/\n/g, "<br>")}</p>
-        </div> <!-- Replaces newlines with <br> for HTML rendering -->
+    </div>
+</body>
+</html>
       `,
     });
 
