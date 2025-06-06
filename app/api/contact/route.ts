@@ -39,8 +39,8 @@ export async function POST(request: Request) {
     // The 'from' address must be a domain you've verified with Resend,
     // or 'onboarding@resend.dev' for initial testing.
     const data = await resend.emails.send({
-      from: "adityamanojshinde.xyz", // IMPORTANT: For production, change this to a verified domain email.
-      to: ["aditya.manoj.shinde@gmail.com"], // Recipient email address
+      from: "Portfolio <onboarding@resend.dev>", // IMPORTANT: For production, change this to a verified domain email.
+      to: ["gitpushforcev2@gmail.com"], // Recipient email address
       subject: `Portfolio Contact: ${subject}`, // Subject line for the email
       html: `
 <!DOCTYPE html>
