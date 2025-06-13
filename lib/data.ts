@@ -95,11 +95,23 @@ export const projects: Project[] = [
     description:
       "This Python application, built using Tkinter and the QRcode library, enables users to generate customized QR codes with ease. It offers several key features designed for flexibility and usability. Users can personalize their QR codes by selecting custom foreground and background colors, ensuring the design aligns with their preferences. The application also allows for adjustable sizing, including border and box dimensions, to optimize the appearance of the QR code. With a responsive user interface, it ensures a smooth experience across different screen sizes. Additionally, users can conveniently choose the location and filename for saving their generated QR codes, making storage and access straightforward.",
     image: "/projects/qrcodegen.jpg",
-    category: "Web Development",
+    category: "Python",
     technologies: [technologies.python],
 
     codeUrl: "https://github.com/AdityaManojShinde/QR-Code-Generator",
     featured: false,
+  },
+  {
+    id: "project-7",
+    title: "🎮 Build Fruit Ninja in Python with Pygame!",
+    description:
+      "This is a Python implementation of a Fruit Ninja-style game built using the Pygame library. The game allows players to slice fruits that appear on screen while avoiding bombs. The game features multiple backgrounds, progressive difficulty, and a high score system.",
+    image: "/projects/fruitslicer.png",
+    category: "Python",
+    technologies: [technologies.python],
+    videoUrl: "https://www.youtube.com/watch?v=HENWtTgxZP8",
+    codeUrl: "https://github.com/AdityaManojShinde/FruitSlicer",
+    featured: true,
   },
 ];
 
@@ -112,25 +124,25 @@ export const education: Education[] = [
     startDate: "2024",
     endDate: "2028",
     description:
-      "Specialized in Human-Computer Interaction and Artificial Intelligence. Participated in various hackathons and coding competitions.",
+      "Specialized in Core IT. Participated in various hackathons and coding competitions.",
     logo: "/icon.svg",
   },
   {
     id: "edu-2",
     institution: "PKMH Jr. College Loni Kalbhor",
-    degree: "HSC",
+    degree: "12th",
     field: "Science",
     startDate: "2022",
     endDate: "2023",
     description:
-      "Completed HSC with a focus on Science and Mathematics. Achieved a score of 61% in the final exams.",
+      "Completed HSC with a focus on Science and Information Technology. Achieved a score of 61% in the final exams.",
     logo: "https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     id: "edu-3",
     institution: "English Medium School Loni Kalbhor",
-    degree: "SSC",
-    field: "All Subjects",
+    degree: "10th",
+    field: "SSC",
     startDate: "2020",
     endDate: "2021",
     description:

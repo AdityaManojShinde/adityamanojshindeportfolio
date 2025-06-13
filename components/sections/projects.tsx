@@ -61,7 +61,7 @@ export default function Projects() {
 
   const filteredProjects =
     filter === "All"
-      ? projects
+      ? projects.toReversed()
       : projects.filter((project) => project.category === filter);
 
   const handleOpenProject = (project: Project) => {

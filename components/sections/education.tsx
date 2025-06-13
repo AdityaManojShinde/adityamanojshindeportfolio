@@ -76,9 +76,6 @@ export default function Education() {
             {education.map((item, index) => {
               const isEven = index % 2 === 0;
 
-              // Debug: Log each item to check data structure
-              console.log(`Education item ${index}:`, item);
-
               // Ensure required fields exist
               if (!item.id && !item.institution) {
                 console.warn(
