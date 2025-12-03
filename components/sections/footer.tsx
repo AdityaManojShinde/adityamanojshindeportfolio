@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center ">
+        <div className=" mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center ">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Aditya Shinde. All rights reserved.
           </p>

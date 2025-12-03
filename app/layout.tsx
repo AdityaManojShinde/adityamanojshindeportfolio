@@ -6,6 +6,7 @@ import Navbar from "@/components/sections/navbar";
 
 import { getBaseUrl } from "@/lib/utils";
 import WhatsAppButton from "@/components/whatsapp-button";
+import Footer from "@/components/sections/footer";
 
 
 const inter = Inter({
@@ -95,8 +96,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1 w-full">{children}</main>
+            <Footer />
+          </div>
           <WhatsAppButton />
         </ThemeProvider>
       </body>
