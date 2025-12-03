@@ -1,36 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Send,
-  CheckCircle,
-  MapPin,
-  Phone,
-  AlertCircle,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { FadeIn } from "@/components/animations/fade-in";
-
-interface FormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-interface FormErrors {
-  name?: string;
-  email?: string;
-  subject?: string;
-  message?: string;
-}
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Contact() {
   const links = {
@@ -39,346 +11,108 @@ export default function Contact() {
     email: "aditya.manoj.shinde@gmail.com",
   };
 
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<FormErrors>({});
-
-  const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (formData.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters.";
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address.";
-    }
-
-    if (formData.subject.trim().length < 5) {
-      newErrors.subject = "Subject must be at least 5 characters.";
-    }
-
-    if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters.";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors((prev) => ({
-        ...prev,
-        [field]: undefined,
-      }));
-    }
-
-    // Clear submit error when user starts typing
-    if (submitError) {
-      setSubmitError(null);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Clear any previous errors
-    setSubmitError(null);
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      console.log("Submitting form data:", formData);
-
-      // Send the form data to our API endpoint
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      // Parse response data
-      const data = await response.json();
-      console.log("API response:", data);
-
-      if (!response.ok) {
-        // Handle API errors
-        const errorMessage =
-          data.error || data.message || `Server error: ${response.status}`;
-        throw new Error(errorMessage);
-      }
-
-      // Success - show success message
-      console.log("Email sent successfully:", data);
-      setSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      setErrors({});
-    } catch (error) {
-      console.error("Error submitting form:", error);
-
-      // Set user-friendly error message
-      if (error instanceof Error) {
-        setSubmitError(error.message);
-      } else {
-        setSubmitError("Failed to send message. Please try again later.");
-      }
-    } finally {
-      // Always stop loading, regardless of success or failure
-      setLoading(false);
-    }
-  };
-
-  const resetForm = () => {
-    setSubmitted(false);
-    setSubmitError(null);
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-    setErrors({});
-  };
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: "Location",
+      details: "India, Maharashtra, Pune",
+      link: null,
+    },
+    {
+      icon: Mail,
+      title: "Email",
+      details: links.email,
+      link: `mailto:${links.email}`,
+    },
+    {
+      icon: Phone,
+      title: "Phone",
+      details: "+91 8767376654",
+      link: "tel:+918767376654",
+    },
+  ];
 
   return (
-    <section id="contact" className="bg-background py-20">
-      <div className="container px-4 md:px-6">
+    <section
+      id="contact"
+      className="bg-background py-20 relative overflow-hidden"
+    >
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+
+      <div className="container px-4 md:px-6 relative z-10">
         <FadeIn>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8 text-center">
             Get In Touch
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <p className="text-lg text-muted-foreground mb-16 max-w-3xl">
+          <p className="text-lg text-muted-foreground mb-16 max-w-3xl mx-auto text-center">
             Have a project in mind or just want to connect? Feel free to reach
             out. I&apos;m always open to discussing new opportunities and ideas.
           </p>
         </FadeIn>
 
-        <div className="grid gap-10 lg:grid-cols-2">
-          <FadeIn direction="right" delay={0.3}>
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <MapPin className="h-6 w-6 text-primary mt-1" />
-                <div>
-                  <h3 className="font-medium">Location</h3>
-                  <p className="text-muted-foreground">
-                    India, Maharashtra, Pune
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <Mail className="h-6 w-6 text-primary mt-1" />
-                <div>
-                  <h3 className="font-medium">Email</h3>
-                  <a
-                    href="mailto:aditya.manoj.shinde@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {links.email}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <Phone className="h-6 w-6 text-primary mt-1" />
-                <div>
-                  <h3 className="font-medium">Phone</h3>
-                  <p className="text-muted-foreground">+91 8767376654</p>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <h3 className="font-medium mb-4">Connect with me</h3>
-                <div className="flex space-x-4">
-                  <a
-                    href={links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-card hover:bg-card/80 p-3 rounded-full transition-colors"
-                    aria-label="GitHub"
-                  >
-                    <Github className="h-6 w-6" />
-                  </a>
-                  <a
-                    href={links.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-card hover:bg-card/80 p-3 rounded-full transition-colors"
-                    aria-label="LinkedIn"
-                  >
-                    <Linkedin className="h-6 w-6" />
-                  </a>
-                  <a
-                    href="mailto:aditya.manoj.shinde@gmail.com"
-                    className="bg-card hover:bg-card/80 p-3 rounded-full transition-colors"
-                    aria-label="Email"
-                  >
-                    <Mail className="h-6 w-6" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-
-          <FadeIn direction="left" delay={0.4}>
-            {submitted ? (
-              <div className="h-full flex flex-col items-center justify-center p-8 bg-card rounded-lg shadow-sm">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                >
-                  <CheckCircle className="h-16 w-16 text-primary mb-4" />
-                </motion.div>
-                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                <p className="text-center text-muted-foreground mb-6">
-                  Thank you for reaching out. I&apos;ll get back to you as soon
-                  as possible.
-                </p>
-                <Button onClick={resetForm}>Send Another Message</Button>
-              </div>
-            ) : (
-              <div className="bg-card p-8 rounded-lg shadow-sm">
-                {submitError && (
-                  <div className="mb-6 p-4 bg-destructive/10 border border-destructive/20 rounded-lg flex items-start space-x-3">
-                    <AlertCircle className="h-5 w-5 text-destructive mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm text-destructive font-medium">
-                        Error sending message
-                      </p>
-                      <p className="text-sm text-destructive/80 mt-1">
-                        {submitError}
-                      </p>
-                    </div>
+        <div className="grid gap-6 md:grid-cols-3 mb-16">
+          {contactInfo.map((item, index) => (
+            <FadeIn key={index} delay={0.3 + index * 0.1}>
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-primary/10 hover:border-primary/30 bg-card/50 backdrop-blur-sm group">
+                <CardContent className="flex flex-col items-center justify-center p-6 text-center h-full">
+                  <div className="p-4 bg-primary/10 rounded-full mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
+                    <item.icon className="h-8 w-8" />
                   </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) =>
-                          handleInputChange("name", e.target.value)
-                        }
-                        className={errors.name ? "border-destructive" : ""}
-                        disabled={loading}
-                      />
-                      {errors.name && (
-                        <p className="text-sm text-destructive">
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Your email"
-                        value={formData.email}
-                        onChange={(e) =>
-                          handleInputChange("email", e.target.value)
-                        }
-                        className={errors.email ? "border-destructive" : ""}
-                        disabled={loading}
-                      />
-                      {errors.email && (
-                        <p className="text-sm text-destructive">
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      placeholder="Subject of your message"
-                      value={formData.subject}
-                      onChange={(e) =>
-                        handleInputChange("subject", e.target.value)
-                      }
-                      className={errors.subject ? "border-destructive" : ""}
-                      disabled={loading}
-                    />
-                    {errors.subject && (
-                      <p className="text-sm text-destructive">
-                        {errors.subject}
-                      </p>
-                    )}
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      placeholder="Your message"
-                      className={`min-h-[150px] resize-none ${
-                        errors.message ? "border-destructive" : ""
-                      }`}
-                      value={formData.message}
-                      onChange={(e) =>
-                        handleInputChange("message", e.target.value)
-                      }
-                      disabled={loading}
-                    />
-                    {errors.message && (
-                      <p className="text-sm text-destructive">
-                        {errors.message}
-                      </p>
-                    )}
-                  </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? (
-                      <>
-                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </div>
-            )}
-          </FadeIn>
+                  <h3 className="font-semibold text-xl mb-2">{item.title}</h3>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.details}
+                    </a>
+                  ) : (
+                    <p className="text-muted-foreground">{item.details}</p>
+                  )}
+                </CardContent>
+              </Card>
+            </FadeIn>
+          ))}
         </div>
+
+        <FadeIn delay={0.6}>
+          <div className="flex flex-col items-center">
+            <h3 className="text-2xl font-semibold mb-8">Connect on Socials</h3>
+            <div className="flex gap-6">
+              <a
+                href={links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 bg-card hover:bg-primary/10 rounded-full border border-border hover:border-primary/50 transition-all duration-300"
+                aria-label="GitHub"
+              >
+                <Github className="h-8 w-8 text-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href={links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 bg-card hover:bg-primary/10 rounded-full border border-border hover:border-primary/50 transition-all duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-8 w-8 text-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href={`mailto:${links.email}`}
+                className="group relative p-4 bg-card hover:bg-primary/10 rounded-full border border-border hover:border-primary/50 transition-all duration-300"
+                aria-label="Email"
+              >
+                <Mail className="h-8 w-8 text-foreground group-hover:text-primary transition-colors" />
+              </a>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
 }
+
